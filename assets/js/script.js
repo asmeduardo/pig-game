@@ -18,6 +18,26 @@ let currentScore = 0;
 let activePlayer = 0; // 0 ou 1
 let isPlaying = true;
 
+// Condições iniciais
+const init = function () {
+  totalScores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  isPlaying = true;
+
+  // Resetar interface
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+
+  diceEl.classList.add('hidden');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+};
+
 // Rola um número aleatório
 const rollDice = () => Math.floor(Math.random() * 6) + 1;
 
@@ -30,3 +50,6 @@ btnRollDice.addEventListener('click', function () {
   const diceNumber = rollDice();
   displayDice(diceNumber);
 });
+
+// Inicializar o jogo
+init();
