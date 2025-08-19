@@ -46,9 +46,44 @@ const displayDice = function (diceNumber) {
   diceEl.classList.remove('hidden');
 };
 
+// Atualiza score atual na tela
+const updateCurrentScoreDisplay = function () {
+  document.getElementById(`current--${activePlayer}`).textContent =
+    currentScore;
+};
+
+// Troca de jogador
+const switchPlayer = function () {
+  // Zerar score atual
+  currentScore = 0;
+  updateCurrentScoreDisplay();
+
+  // Trocar jogador ativo
+  activePlayer = activePlayer === 0 ? 1 : 0;
+
+  // Trocar classe visual
+  player0El.classList.toggle('player--active');
+  player1El.classList.toggle('player--active');
+};
+
 btnRollDice.addEventListener('click', function () {
+  if (!isPlaying) return;
+
+  // Gerar rolagem
   const diceNumber = rollDice();
+
+  // Mostrar dado
   displayDice(diceNumber);
+
+  // Verificar se rolou 1
+  if (diceNumber !== 1) {
+    // Somar ao score atual
+    currentScore += diceNumber;
+    updateCurrentScoreDisplay();
+  } else {
+    // Trocar jogador
+    switchPlayer();
+  }
 });
 
 // Inicializar o jogo
