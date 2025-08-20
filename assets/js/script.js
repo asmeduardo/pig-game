@@ -13,16 +13,13 @@ const btnHold = document.querySelector('.btn--hold');
 const btnNewGame = document.querySelector('.btn--new');
 
 // Variáveis do jogo
-let totalScores = [0, 0]; // [player0, player1]
-let currentScore = 0;
-let activePlayer = 0; // 0 ou 1
-let isPlaying = true;
+let totalScores, currentScore, activePlayer, isPlaying;
 
 // Condições iniciais
 const init = function () {
-  totalScores = [0, 0];
+  totalScores = [0, 0]; // [player0, player1]
   currentScore = 0;
-  activePlayer = 0;
+  activePlayer = 0; // 0 ou 1
   isPlaying = true;
 
   // Resetar interface
