@@ -80,6 +80,10 @@ const finishGame = function () {
     .classList.remove('player--active');
 };
 
+// Inicializar o jogo
+init();
+
+// Event Listeners
 btnRollDice.addEventListener('click', function () {
   if (!isPlaying) return;
 
@@ -117,5 +121,4 @@ btnHold.addEventListener('click', function () {
   }
 });
 
-// Inicializar o jogo
-init();
+btnNewGame.addEventListener('click', init);
