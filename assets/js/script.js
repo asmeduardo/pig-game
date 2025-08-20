@@ -66,6 +66,20 @@ const switchPlayer = function () {
   player1El.classList.toggle('player--active');
 };
 
+// Finalizar o jogo
+const finishGame = function () {
+  isPlaying = false;
+  diceEl.classList.add('hidden');
+
+  // Adicionar classe de vencedor
+  document
+    .querySelector(`.player--${activePlayer}`)
+    .classList.add('player--winner');
+  document
+    .querySelector(`.player--${activePlayer}`)
+    .classList.remove('player--active');
+};
+
 btnRollDice.addEventListener('click', function () {
   if (!isPlaying) return;
 
@@ -80,6 +94,23 @@ btnRollDice.addEventListener('click', function () {
     // Somar ao score atual
     currentScore += diceNumber;
     updateCurrentScoreDisplay();
+  } else {
+    // Trocar jogador
+    switchPlayer();
+  }
+});
+
+btnHold.addEventListener('click', function () {
+  if (!isPlaying) return;
+
+  // Adicionar score atual ao total
+  totalScores[activePlayer] += currentScore;
+  document.getElementById(`score--${activePlayer}`).textContent =
+    totalScores[activePlayer];
+
+  // Verificar vitória (100 pontos)
+  if (totalScores[activePlayer] >= 100) {
+    finishGame();
   } else {
     // Trocar jogador
     switchPlayer();
